@@ -200,29 +200,29 @@ export default function LandingPage({ onAuthSuccess }) {
             <div style={styles.mockupBody}>
               <div style={styles.mockupRow}>
                 <span style={styles.mockLabel}>Base Rent</span>
-                <span style={styles.mockVal}>$1,200.00</span>
+                <span style={styles.mockVal}>₹1,200.00</span>
               </div>
               
               <div style={styles.mockupRow}>
                 <span style={styles.mockLabel}>
                   Electricity Consumption
                   <small style={{ display: 'block', fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                    ({simMeterReading} kWh - 1300 kWh) × $0.15
+                    ({simMeterReading} kWh - 1300 kWh) × ₹0.15
                   </small>
                 </span>
                 <span style={{ ...styles.mockVal, color: '#f59e0b' }}>
-                  {simElecUnits} kWh (${simElecCost})
+                  {simElecUnits} kWh (₹{simElecCost})
                 </span>
               </div>
 
               <div style={styles.mockupRow}>
                 <span style={styles.mockLabel}>Water Service Base</span>
-                <span style={styles.mockVal}>$20.00</span>
+                <span style={styles.mockVal}>₹20.00</span>
               </div>
 
               <div style={styles.mockupRow}>
                 <span style={styles.mockLabel}>Custom Amenities (WiFi)</span>
-                <span style={styles.mockVal}>$45.00</span>
+                <span style={styles.mockVal}>₹45.00</span>
               </div>
 
               <hr style={styles.mockDivider} />
@@ -230,43 +230,14 @@ export default function LandingPage({ onAuthSuccess }) {
               <div style={{ ...styles.mockupRow, marginTop: '0.5rem' }}>
                 <span style={{ ...styles.mockLabel, fontWeight: '700', color: '#fff' }}>Invoice Total</span>
                 <span className="live-counter-text" style={styles.mockTotal}>
-                  ${simTotal.toFixed(2)}
+                  ₹{simTotal.toFixed(2)}
                 </span>
-              </div>
-
-              {/* Verified Digital Signature */}
-              <div style={styles.mockupSignature}>
-                <div style={styles.sigHeader}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
-                  </svg>
-                  <span>Verification Signature Attached</span>
-                </div>
-                <div style={styles.sigLine}>Anuj Kumar Jha (Verified)</div>
               </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Metrics Section */}
-      <section id="metrics" className="landing-section" style={styles.section}>
-        <div style={styles.metricsGrid} className="metrics-grid">
-          <div className="metric-box" style={styles.metricBox}>
-            <div className="metric-num">${(rentAudited / 1000000).toFixed(2)}M+</div>
-            <div className="metric-label">Lease Statements Audited</div>
-          </div>
-          <div className="metric-box" style={styles.metricBox}>
-            <div className="metric-num">{invoicesGenerated.toLocaleString()}+</div>
-            <div className="metric-label">Invoices Issued & Archived</div>
-          </div>
-          <div className="metric-box" style={styles.metricBox}>
-            <div className="metric-num">{verificationRate}%</div>
-            <div className="metric-label">Billing Accuracy Rate</div>
-          </div>
-        </div>
-      </section>
 
       {/* Capabilities Showcase */}
       <section id="features" className="landing-section" style={styles.section}>
