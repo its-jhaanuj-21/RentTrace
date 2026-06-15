@@ -11,6 +11,7 @@ import Auth from './components/Auth';
 import Profile from './components/Profile';
 import About from './components/About';
 import MobileSettingsHub from './components/MobileSettingsHub';
+import LandingPage from './components/LandingPage';
 
 const DEFAULT_SETTINGS = {
   tenantName: '',
@@ -331,9 +332,9 @@ export default function App() {
 
   const activePayment = payments.find(p => p.id === selectedPaymentId);
 
-  // If user is not authenticated, render standard Login/Signup screen
+  // If user is not authenticated, render standard Website Home Screen (Landing Page)
   if (!user) {
-    return <Auth onAuthSuccess={handleAuthSuccess} />;
+    return <LandingPage onAuthSuccess={handleAuthSuccess} />;
   }
 
   if (showSplash) {

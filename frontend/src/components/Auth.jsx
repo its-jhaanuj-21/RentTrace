@@ -3,13 +3,20 @@ import React, { useState, useEffect } from 'react';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
-export default function Auth({ onAuthSuccess }) {
-  const [isLogin, setIsLogin] = useState(true);
+export default function Auth({ onAuthSuccess, initialIsLogin, onClose }) {
+  const [isLogin, setIsLogin] = useState(initialIsLogin !== undefined ? initialIsLogin : true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (initialIsLogin !== undefined) {
+      setIsLogin(initialIsLogin);
+    }
+  }, [initialIsLogin]);
+
 
   // Initialize and render Google Sign-In Button
   useEffect(() => {
@@ -103,6 +110,20 @@ export default function Auth({ onAuthSuccess }) {
     <div className="auth-wrapper" style={styles.wrapper}>
       <style>{cssStyles}</style>
       <div className="auth-card" style={styles.card}>
+        {onClose && (
+          <button 
+            type="button" 
+            onClick={onClose} 
+            style={styles.closeBtn} 
+            className="auth-close-btn"
+            title="Close"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        )}
         <div className="auth-header" style={styles.header}>
           <div style={styles.logo}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="32" height="32">
@@ -252,6 +273,11 @@ const cssStyles = `
   .auth-header, .auth-input-group-1, .auth-input-group-2, .auth-input-group-3, .auth-submit-btn, .auth-divider-block, .auth-social-block, .auth-footer-block {
     opacity: 0;
   }
+  .auth-close-btn:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
+    transform: rotate(90deg);
+  }
 `;
 
 // Inline Styles for Modern Glassmorphism Look
@@ -267,6 +293,7 @@ const styles = {
     fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif'
   },
   card: {
+    position: 'relative',
     background: 'rgba(255, 255, 255, 0.02)',
     backdropFilter: 'blur(16px)',
     WebkitBackdropFilter: 'blur(16px)',
@@ -277,6 +304,25 @@ const styles = {
     maxWidth: '440px',
     boxShadow: '0 20px 40px rgba(0, 0, 0, 0.4)',
     boxSizing: 'border-box'
+  },
+  closeBtn: {
+    position: 'absolute',
+    top: '1.25rem',
+    right: '1.25rem',
+    background: 'rgba(255, 255, 255, 0.04)',
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    borderRadius: '50%',
+    width: '32px',
+    height: '32px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: 'rgba(255, 255, 255, 0.5)',
+    cursor: 'pointer',
+    transition: 'all 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+    zIndex: 10,
+    outline: 'none',
+    padding: 0
   },
   header: {
     textAlign: 'center',
