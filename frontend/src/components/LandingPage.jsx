@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Auth from './Auth';
+import ShowcaseCarousel from './ShowcaseCarousel';
 
 export default function LandingPage({ onAuthSuccess }) {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [initialIsLogin, setInitialIsLogin] = useState(true);
-  
+
   // Stats Counters state
   const [rentAudited, setRentAudited] = useState(0);
   const [invoicesGenerated, setInvoicesGenerated] = useState(0);
@@ -135,8 +136,10 @@ export default function LandingPage({ onAuthSuccess }) {
         </div>
         <div style={styles.navMenu} className="landing-nav-menu">
           <a href="#features" style={styles.navLink}>Features</a>
-          <a href="#tech" style={styles.navLink}>Stack</a>
-          <a href="#metrics" style={styles.navLink}>Stats</a>
+          <a href="#showcase" style={styles.navLink}>Showcase</a>
+          <a href="#pricing" style={styles.navLink}>Pricing</a>
+          <a href="#faq" style={styles.navLink}>FAQ</a>
+          <a href="#contact" style={styles.navLink}>Contact</a>
         </div>
         <div style={styles.navAuthButtons}>
           <button onClick={() => openAuth(true)} style={styles.btnNavSignIn}>Sign In</button>
@@ -150,7 +153,7 @@ export default function LandingPage({ onAuthSuccess }) {
             <span style={styles.badgePing}></span>
             <span>Version 1.0 Live</span>
           </div>
-          
+
           <h1 style={styles.heroTitle} className="hero-title">
             Transparent <br />
             <span className="shimmer-text" style={styles.gradientText}>
@@ -168,8 +171,8 @@ export default function LandingPage({ onAuthSuccess }) {
             <button onClick={() => openAuth(false)} style={styles.btnHeroPrimary}>
               Start Tracking Free
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
-                <line x1="5" y1="12" x2="19" y2="12"/>
-                <polyline points="12 5 19 12 12 19"/>
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
               </svg>
             </button>
             <a href="#features" style={styles.btnHeroSecondary}>
@@ -202,7 +205,7 @@ export default function LandingPage({ onAuthSuccess }) {
                 <span style={styles.mockLabel}>Base Rent</span>
                 <span style={styles.mockVal}>₹1,200.00</span>
               </div>
-              
+
               <div style={styles.mockupRow}>
                 <span style={styles.mockLabel}>
                   Electricity Consumption
@@ -243,7 +246,7 @@ export default function LandingPage({ onAuthSuccess }) {
       <section id="features" className="landing-section" style={styles.section}>
         <h2 style={styles.sectionHeader} className="section-header">Engineered for absolute billing clarity.</h2>
         <p style={styles.sectionSub}>No spreadsheets, no manual calculation errors, and zero tenant disputes.</p>
-        
+
         <div style={styles.featureGrid} className="feature-grid">
           {/* Card 1 */}
           <div className="feature-hover-card" style={styles.featureCard}>
@@ -296,49 +299,174 @@ export default function LandingPage({ onAuthSuccess }) {
         </div>
       </section>
 
-      {/* Tech Stack Section */}
-      <section id="tech" className="landing-section" style={styles.section}>
-        <h2 style={styles.sectionHeader} className="section-header">Engineered on high performance standards.</h2>
-        <p style={styles.sectionSub}>RentTrace combines robust MERN architectures with optimized styles.</p>
+      {/* Showcase Section */}
+      <section id="showcase" className="landing-section" style={styles.section}>
+        <h2 style={styles.sectionHeader} className="section-header">Experience the full platform layout.</h2>
+        <p style={styles.sectionSub}>Designed for precision and aesthetics across all your devices.</p>
 
-        <div style={styles.techGrid} className="tech-grid">
-          <div className="tech-card" style={styles.techCard}>
-            <div className="tech-icon-circle">M</div>
-            <h4>MongoDB</h4>
-            <p>Flexible document schemas mapping settings configurations and payment ledgers safely.</p>
-          </div>
-          
-          <div className="tech-card" style={styles.techCard}>
-            <div className="tech-icon-circle">E</div>
-            <h4>Express.js</h4>
-            <p>High performance REST endpoints with rigid route guard middleware validation.</p>
-          </div>
+        <div style={styles.showcaseContainer}>
+          <ShowcaseCarousel />
+        </div>
+      </section>
 
-          <div className="tech-card" style={styles.techCard}>
-            <div className="tech-icon-circle">R</div>
-            <h4>React.js</h4>
-            <p>Component-centric client state architecture, running dynamic responsive dashboard flows.</p>
-          </div>
-
-          <div className="tech-card" style={styles.techCard}>
-            <div className="tech-icon-circle">N</div>
-            <h4>Node.js</h4>
-            <p>Optimized Javascript engine handling base64 asset serialization and JWT hashing.</p>
+      {/* Pricing Section */}
+      <section id="pricing" className="landing-section" style={styles.section}>
+        <h2 style={styles.sectionHeader} className="section-header">Simple, transparent pricing.</h2>
+        <p style={styles.sectionSub}>No hidden fees, no complicated tiers.</p>
+        
+        <div style={styles.pricingContainer}>
+          <div className="pricing-card" style={styles.pricingCard}>
+            <div style={styles.pricingBadge}>Special Launch</div>
+            <h3 style={styles.pricingTitle}>Free Tier</h3>
+            <div style={styles.pricingAmount}>
+              <span style={styles.pricingCurrency}>₹</span><span style={styles.pricingAmountText}>0</span>
+              <span style={styles.pricingPeriod}>/ forever</span>
+            </div>
+            <p style={styles.pricingDesc}>
+              100% Free for everyone in India and for Indian people living in rented houses.
+            </p>
+            <ul style={styles.pricingFeatures}>
+              <li style={styles.pricingFeatureItem}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" width="18" height="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Unlimited Rent Ledgers
+              </li>
+              <li style={styles.pricingFeatureItem}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" width="18" height="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Sub-meter Utility Calculators
+              </li>
+              <li style={styles.pricingFeatureItem}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" width="18" height="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Instant PDF Invoices
+              </li>
+              <li style={styles.pricingFeatureItem}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" width="18" height="18"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Camera Evidence Uploads
+              </li>
+            </ul>
+            <button onClick={() => openAuth(false)} style={styles.btnPricing} className="btn-pricing">Get Started Free</button>
           </div>
         </div>
       </section>
 
-      {/* Landing Footer */}
-      <footer style={styles.footer}>
-        <div style={styles.footerContent} className="footer-content">
-          <div style={styles.footerLeft} className="footer-left">
-            <h3 style={styles.footerLogoText}>RentTrace</h3>
-            <p>Handcrafted utility ledger logs & digital billing transparency system.</p>
+      {/* FAQ Section */}
+      <section id="faq" className="landing-section" style={{ ...styles.section, background: 'rgba(15, 22, 38, 0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <h2 style={styles.sectionHeader} className="section-header">Frequently Asked Questions</h2>
+        <p style={styles.sectionSub}>Everything you need to know about the product and billing.</p>
+
+        <div className="faq-container">
+          {[
+            { q: "Is my data completely secure?", a: "Yes. All your meter readings, proofs, and financial ledgers are encrypted and securely stored. We don't share your tenant data." },
+            { q: "Do my tenants need to download the app?", a: "No! You can instantly generate a PDF invoice and send it directly via WhatsApp or Email. Tenants do not need an account." },
+            { q: "Is it really free in India?", a: "Yes, RentTrace is completely free to use for landlords and tenants based in India. We believe in accessible tools for modern housing." },
+            { q: "Can I add custom utility charges like WiFi?", a: "Absolutely. You can add any custom amenity charges, fixed or variable, alongside standard electricity and water bills." }
+          ].map((faq, i) => (
+            <div key={i} className="faq-item" style={styles.faqItem}>
+              <h4 style={styles.faqQ}>{faq.q}</h4>
+              <p style={styles.faqA}>{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="landing-section" style={styles.section}>
+        <h2 style={styles.sectionHeader} className="section-header">Get in Touch</h2>
+        <p style={styles.sectionSub}>Have a question or need custom features? Reach out to us.</p>
+
+        <div style={styles.contactContainer}>
+          <form className="contact-form" style={styles.contactForm} onSubmit={(e) => { e.preventDefault(); alert("Thanks for reaching out! We'll get back to you soon."); e.target.reset(); }}>
+            <div style={styles.inputGroup}>
+              <label style={styles.inputLabel} htmlFor="contactName">Name</label>
+              <input style={styles.contactInput} type="text" id="contactName" placeholder="John Doe" required />
+            </div>
+            <div style={styles.inputGroup}>
+              <label style={styles.inputLabel} htmlFor="contactEmail">Email Address</label>
+              <input style={styles.contactInput} type="email" id="contactEmail" placeholder="john@example.com" required />
+            </div>
+            <div style={styles.inputGroup}>
+              <label style={styles.inputLabel} htmlFor="contactMsg">Message</label>
+              <textarea style={styles.contactTextarea} id="contactMsg" placeholder="How can we help you?" rows="4" required></textarea>
+            </div>
+            <button type="submit" style={styles.btnHeroPrimary} className="btn-submit-contact">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Final CTA Banner */}
+      <section style={styles.ctaSection}>
+        <div className="cta-banner" style={styles.ctaBanner}>
+          <div style={styles.ctaContent}>
+            <h2 style={styles.ctaTitle}>Ready to modernize your property management?</h2>
+            <p style={styles.ctaSub}>Join landlords across India tracking ledgers with absolute transparency.</p>
+            <button onClick={() => openAuth(false)} style={styles.btnHeroPrimary}>
+               Start Tracking Free
+               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+                 <line x1="5" y1="12" x2="19" y2="12" />
+                 <polyline points="12 5 19 12 12 19" />
+               </svg>
+            </button>
           </div>
-          <div style={styles.footerRight} className="footer-right">
-            <span style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.4)' }}>
-              © 2026 RentTrace Project. Handcrafted by Anuj Kumar Jha.
-            </span>
+        </div>
+      </section>
+
+      {/* Advanced Landing Footer */}
+      <footer style={styles.footer} className="advanced-footer">
+        <div style={styles.footerTop}>
+          <div style={styles.footerBrand}>
+            <div style={styles.logoGroup}>
+              <div style={styles.logoIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={styles.logoSvg}>
+                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  <polyline points="9 22 9 12 15 12 15 22" />
+                </svg>
+              </div>
+              <span style={styles.logoText}>RentTrace</span>
+            </div>
+            <p style={styles.footerBrandDesc}>
+              The modern standard for utility ledger tracking, billing transparency, and robust tenant dispute resolution. Proudly built in India 🇮🇳 for the modern landlord.
+            </p>
+            <div style={styles.socialIcons}>
+              <a href="#" className="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
+              </a>
+              <a href="#" className="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" /></svg>
+              </a>
+              <a href="#" className="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <div className="footer-links-grid" style={styles.footerLinksGrid}>
+            <div style={styles.footerLinkCol}>
+              <h4 style={styles.footerColTitle}>Product</h4>
+              <a href="#features" className="footer-link">Features</a>
+              <a href="#showcase" className="footer-link">Showcase</a>
+              <a href="#pricing" className="footer-link">Pricing</a>
+              <a href="#faq" className="footer-link">FAQ</a>
+            </div>
+            <div style={styles.footerLinkCol}>
+              <h4 style={styles.footerColTitle}>Legal</h4>
+              <a href="#" className="footer-link">Privacy Policy</a>
+              <a href="#" className="footer-link">Terms of Service</a>
+            </div>
+            <div style={styles.footerLinkCol}>
+              <h4 style={styles.footerColTitle}>Contact Us</h4>
+              <span className="footer-text">Email: hello@renttrace.in</span>
+              <span className="footer-text">Address: Kolkata, India 🇮🇳</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.footerBottom}>
+          <span style={styles.footerCopyright}>
+            © {new Date().getFullYear()} RentTrace. Handcrafted with ❤️ in India 🇮🇳 by Anuj Kumar Jha.
+          </span>
+          <div style={styles.systemStatus}>
+            <span className="status-ping"></span> All Systems Operational
           </div>
         </div>
       </footer>
@@ -481,30 +609,13 @@ const landingCss = `
     box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 30px rgba(99, 102, 241, 0.08);
   }
 
-  .tech-card {
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  .showcase-img {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s;
   }
-
-  .tech-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 255, 255, 0.15) !important;
-    background: rgba(255, 255, 255, 0.04) !important;
-    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-  }
-
-  .tech-icon-circle {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
-    border: 1px solid rgba(255,255,255,0.08);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 1rem;
+  
+  .showcase-img:hover {
+    transform: translateY(-10px) rotateX(2deg);
+    box-shadow: 0 40px 80px rgba(99, 102, 241, 0.2) !important;
   }
 
   .modal-overlay-bg {
@@ -514,6 +625,62 @@ const landingCss = `
 
   .auth-modal-card-wrapper {
     animation: modalSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .faq-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 768px) {
+    .faq-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .btn-pricing:hover {
+    background: rgba(99, 102, 241, 0.2) !important;
+    color: #fff !important;
+  }
+  
+  .pricing-card {
+    transition: all 0.3s ease;
+  }
+  .pricing-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(99, 102, 241, 0.15) !important;
+    border-color: rgba(99, 102, 241, 0.6) !important;
+  }
+  .faq-item {
+    transition: all 0.3s ease;
+  }
+  .faq-item:hover {
+    background: rgba(255,255,255,0.04) !important;
+    transform: translateY(-4px);
+  }
+  
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+    animation: gradientBg 15s linear infinite;
+    pointer-events: none;
+  }
+
+  .contact-form input:focus, .contact-form textarea:focus {
+    border-color: #6366f1 !important;
+  }
+  .btn-submit-contact {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
 
   @keyframes fadeIn {
@@ -537,9 +704,6 @@ const landingCss = `
     }
     .hero-btn-group {
       justify-content: center !important;
-    }
-    .tech-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
     }
   }
 
@@ -569,15 +733,86 @@ const landingCss = `
     .hero-title {
       font-size: 2rem !important;
     }
-    .tech-grid {
-      grid-template-columns: 1fr !important;
-    }
     .footer-content {
       flex-direction: column !important;
       text-align: center !important;
     }
     .footer-left, .footer-right {
       text-align: center !important;
+    }
+  }
+
+  .footer-link {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .footer-text {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    display: block;
+  }
+  .footer-link:hover {
+    color: #fff;
+    transform: translateX(4px);
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    color: #94a3b8;
+    transition: all 0.3s;
+  }
+  .social-link:hover {
+    background: #6366f1;
+    color: #fff;
+    border-color: #6366f1;
+    transform: translateY(-3px);
+  }
+  .status-ping {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    position: relative;
+    margin-right: 8px;
+  }
+  .status-ping::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #10b981;
+    opacity: 0.4;
+    animation: pulsePing 2s infinite;
+  }
+
+  @media (max-width: 968px) {
+    .footer-links-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 2rem !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-links-grid {
+      grid-template-columns: 1fr !important;
+    }
+    .advanced-footer > div {
+      flex-direction: column !important;
+      align-items: flex-start !important;
     }
   }
 `;
@@ -590,7 +825,7 @@ const styles = {
     width: '100vw',
     backgroundColor: '#070a13',
     color: '#f8fafc',
-    fontFamily: "'Plus Jakarta Sans', -apple-system, sans-serif",
+    fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI Emoji', 'Segoe UI', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif",
     overflowX: 'hidden',
     overflowY: 'auto',
     display: 'flex',
@@ -972,58 +1207,96 @@ const styles = {
     color: '#94a3b8',
     margin: 0
   },
-  techGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: '1.5rem',
-    '@media (max-width: 968px)': {
-      gridTemplateColumns: 'repeat(2, 1fr)'
-    },
-    '@media (max-width: 576px)': {
-      gridTemplateColumns: '1fr'
-    }
-  },
-  techCard: {
-    background: 'rgba(255, 255, 255, 0.02)',
-    border: '1px solid rgba(255, 255, 255, 0.06)',
-    borderRadius: '20px',
-    padding: '1.75rem 1.5rem',
-    boxSizing: 'border-box',
+  showcaseContainer: {
+    width: '100%',
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    textAlign: 'left'
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '2rem 0',
+    perspective: '1000px',
+  },
+  showcaseImage: {
+    width: '100%',
+    maxWidth: '1100px',
+    height: 'auto',
+    borderRadius: '24px',
+    boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
   },
   footer: {
     marginTop: 'auto',
     borderTop: '1px solid rgba(255, 255, 255, 0.05)',
-    background: 'rgba(7, 10, 19, 0.9)',
-    padding: '2.5rem 6vw',
+    background: 'linear-gradient(to bottom, #070a13, #04060b)',
+    padding: '4rem 6vw 2rem 6vw',
     width: '100%',
     boxSizing: 'border-box',
     zIndex: 10
   },
-  footerContent: {
+  footerTop: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    flexWrap: 'wrap',
+    gap: '4rem',
+    maxWidth: '1400px',
+    margin: '0 auto',
+    marginBottom: '4rem'
+  },
+  footerBrand: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.25rem',
+    maxWidth: '350px'
+  },
+  footerBrandDesc: {
+    color: '#94a3b8',
+    fontSize: '0.95rem',
+    lineHeight: '1.6',
+    margin: 0
+  },
+  socialIcons: {
+    display: 'flex',
+    gap: '0.75rem',
+    marginTop: '0.5rem'
+  },
+  footerLinksGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '4rem',
+    flex: 1,
+    minWidth: '300px'
+  },
+  footerLinkCol: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.1rem'
+  },
+  footerColTitle: {
+    color: '#fff',
+    fontSize: '1rem',
+    fontWeight: '700',
+    margin: '0 0 0.5rem 0'
+  },
+  footerBottom: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     flexWrap: 'wrap',
     gap: '1.5rem',
     maxWidth: '1400px',
-    margin: '0 auto'
+    margin: '0 auto',
+    paddingTop: '2rem',
+    borderTop: '1px solid rgba(255,255,255,0.05)'
   },
-  footerLeft: {
-    textAlign: 'left'
+  footerCopyright: {
+    fontSize: '0.85rem',
+    color: 'rgba(255, 255, 255, 0.4)'
   },
-  footerLogoText: {
-    fontFamily: "'Space Grotesk', sans-serif",
-    fontSize: '1.1rem',
-    fontWeight: '700',
-    color: '#fff',
-    marginBottom: '0.25rem'
-  },
-  footerRight: {
-    textAlign: 'right'
+  systemStatus: {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '0.85rem',
+    color: '#94a3b8',
+    fontWeight: '500'
   },
   modalOverlay: {
     position: 'fixed',
@@ -1038,5 +1311,203 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center',
     zIndex: 99999
+  },
+  pricingContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+    paddingTop: '1rem'
+  },
+  pricingCard: {
+    background: 'linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.9) 100%)',
+    border: '1px solid rgba(99, 102, 241, 0.3)',
+    borderRadius: '24px',
+    padding: '3rem 2.5rem',
+    width: '100%',
+    maxWidth: '450px',
+    textAlign: 'center',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  pricingBadge: {
+    position: 'absolute',
+    top: '1.5rem',
+    right: '1.5rem',
+    background: 'rgba(16, 185, 129, 0.15)',
+    color: '#10b981',
+    padding: '0.25rem 0.75rem',
+    borderRadius: '50px',
+    fontSize: '0.75rem',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: '1px'
+  },
+  pricingTitle: {
+    fontSize: '1.5rem',
+    color: '#fff',
+    margin: '0 0 1rem 0',
+    fontWeight: '600'
+  },
+  pricingAmount: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'baseline',
+    marginBottom: '1rem'
+  },
+  pricingCurrency: {
+    fontSize: '1.5rem',
+    fontWeight: '600',
+    color: '#94a3b8',
+    marginRight: '0.25rem'
+  },
+  pricingAmountText: {
+    fontSize: '3.5rem',
+    fontWeight: '800',
+    color: '#fff',
+    lineHeight: '1'
+  },
+  pricingPeriod: {
+    fontSize: '1rem',
+    color: '#94a3b8',
+    marginLeft: '0.25rem'
+  },
+  pricingDesc: {
+    color: '#cbd5e1',
+    fontSize: '1rem',
+    lineHeight: '1.5',
+    marginBottom: '2rem'
+  },
+  pricingFeatures: {
+    listStyle: 'none',
+    padding: 0,
+    margin: '0 0 2.5rem 0',
+    textAlign: 'left',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem'
+  },
+  pricingFeatureItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    color: '#f8fafc',
+    fontSize: '0.95rem'
+  },
+  btnPricing: {
+    width: '100%',
+    background: 'rgba(99, 102, 241, 0.1)',
+    border: '1px solid rgba(99, 102, 241, 0.5)',
+    color: '#a5b4fc',
+    padding: '1rem',
+    borderRadius: '12px',
+    fontSize: '1rem',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.3s'
+  },
+  faqItem: {
+    background: 'rgba(255,255,255,0.02)',
+    border: '1px solid rgba(255,255,255,0.05)',
+    borderRadius: '16px',
+    padding: '1.5rem'
+  },
+  faqQ: {
+    fontSize: '1.1rem',
+    color: '#fff',
+    marginBottom: '0.75rem',
+    fontWeight: '600'
+  },
+  faqA: {
+    color: '#94a3b8',
+    fontSize: '0.95rem',
+    lineHeight: '1.6',
+    margin: 0
+  },
+  ctaSection: {
+    padding: '4rem 6vw',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    width: '100%',
+    boxSizing: 'border-box'
+  },
+  ctaBanner: {
+    background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%)',
+    border: '1px solid rgba(168, 85, 247, 0.3)',
+    borderRadius: '32px',
+    padding: '4rem 2rem',
+    textAlign: 'center',
+    position: 'relative',
+    overflow: 'hidden'
+  },
+  ctaContent: {
+    position: 'relative',
+    zIndex: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '1.5rem'
+  },
+  ctaTitle: {
+    fontSize: '2.5rem',
+    color: '#fff',
+    margin: 0,
+    fontFamily: "'Space Grotesk', sans-serif",
+    fontWeight: '700'
+  },
+  ctaSub: {
+    color: '#cbd5e1',
+    fontSize: '1.1rem',
+    margin: 0,
+    maxWidth: '600px'
+  },
+  contactContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%'
+  },
+  contactForm: {
+    background: 'rgba(15, 22, 38, 0.5)',
+    border: '1px solid rgba(255, 255, 255, 0.08)',
+    borderRadius: '24px',
+    padding: '3rem 2.5rem',
+    width: '100%',
+    maxWidth: '500px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1.5rem',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+  },
+  inputGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem',
+    textAlign: 'left'
+  },
+  inputLabel: {
+    fontSize: '0.9rem',
+    fontWeight: '600',
+    color: '#cbd5e1'
+  },
+  contactInput: {
+    background: 'rgba(0,0,0,0.3)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    borderRadius: '10px',
+    padding: '0.85rem 1rem',
+    color: '#fff',
+    fontSize: '0.95rem',
+    outline: 'none',
+    transition: 'border-color 0.2s'
+  },
+  contactTextarea: {
+    background: 'rgba(0,0,0,0.3)',
+    border: '1px solid rgba(255,255,255,0.1)',
+    borderRadius: '10px',
+    padding: '0.85rem 1rem',
+    color: '#fff',
+    fontSize: '0.95rem',
+    outline: 'none',
+    resize: 'vertical',
+    fontFamily: 'inherit',
+    transition: 'border-color 0.2s'
   }
 };
