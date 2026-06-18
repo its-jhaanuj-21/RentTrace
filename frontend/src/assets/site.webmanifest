@@ -1,11 +1,11 @@
 {
-  "name": "RentTrace",
-  "short_name": "RentTrace",
-  "description": "House Rent Tracer for Tenant",
+  "name": "Your Application Name",
+  "short_name": "App",
+  "description": "Application description",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#070a13",
-  "theme_color": "#070a13",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -28,8 +28,7 @@
     }
   ],
   "categories": [
-    "productivity",
-    "finance"
+    "productivity"
   ],
   "lang": "en",
   "dir": "ltr"

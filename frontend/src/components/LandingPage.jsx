@@ -126,12 +126,7 @@ export default function LandingPage({ onAuthSuccess }) {
       {/* Navigation Header */}
       <nav style={styles.nav}>
         <div style={styles.logoGroup}>
-          <div style={styles.logoIcon}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={styles.logoSvg}>
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-          </div>
+          <img src="/icon-192.png" alt="RentTrace Logo" style={{ width: '36px', height: '36px', borderRadius: '8px', objectFit: 'cover' }} />
           <span style={styles.logoText}>RentTrace</span>
         </div>
         <div style={styles.navMenu} className="landing-nav-menu">
@@ -313,7 +308,7 @@ export default function LandingPage({ onAuthSuccess }) {
       <section id="pricing" className="landing-section" style={styles.section}>
         <h2 style={styles.sectionHeader} className="section-header">Simple, transparent pricing.</h2>
         <p style={styles.sectionSub}>No hidden fees, no complicated tiers.</p>
-        
+
         <div style={styles.pricingContainer}>
           <div className="pricing-card" style={styles.pricingCard}>
             <div style={styles.pricingBadge}>Special Launch</div>
@@ -401,11 +396,11 @@ export default function LandingPage({ onAuthSuccess }) {
             <h2 style={styles.ctaTitle}>Ready to modernize your property management?</h2>
             <p style={styles.ctaSub}>Join landlords across India tracking ledgers with absolute transparency.</p>
             <button onClick={() => openAuth(false)} style={styles.btnHeroPrimary}>
-               Start Tracking Free
-               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
-                 <line x1="5" y1="12" x2="19" y2="12" />
-                 <polyline points="12 5 19 12 12 19" />
-               </svg>
+              Start Tracking Free
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
             </button>
           </div>
         </div>
@@ -416,12 +411,7 @@ export default function LandingPage({ onAuthSuccess }) {
         <div style={styles.footerTop}>
           <div style={styles.footerBrand}>
             <div style={styles.logoGroup}>
-              <div style={styles.logoIcon}>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={styles.logoSvg}>
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-              </div>
+              <img src="/icon-192.png" alt="RentTrace Logo" style={{ width: '36px', height: '36px', borderRadius: '8px', objectFit: 'cover' }} />
               <span style={styles.logoText}>RentTrace</span>
             </div>
             <p style={styles.footerBrandDesc}>
