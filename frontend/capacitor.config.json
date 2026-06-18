@@ -1,0 +1,8 @@
+{
+  "appId": "com.renttrace.app",
+  "appName": "RentTrace",
+  "webDir": "dist",
+  "server": {
+    "cleartext": true
+  }
+}
