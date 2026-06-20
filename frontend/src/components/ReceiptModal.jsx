@@ -29,18 +29,33 @@ export default function ReceiptModal({ isOpen, onClose, payment, settings, showT
   const generateReceiptBlob = async () => {
     if (!receiptRef.current) return null;
     
-    // Temporarily apply style tweaks for clean canvas rendering
     const element = receiptRef.current;
     
+    // Temporarily force a fixed desktop width so the PNG doesn't shrink on mobile devices
+    const originalWidth = element.style.width;
+    const originalMaxWidth = element.style.maxWidth;
+    const originalPadding = element.style.padding;
+    
+    // 580px is the natural maximum width of the receipt in index.css
+    element.style.width = '580px';
+    element.style.maxWidth = '580px';
+    element.style.padding = '24px'; // Match standard padding
+    
     try {
-      // Use higher scale (2.5x) for clean, high-resolution text and images
+      // Use higher scale (3x) for clean, high-resolution text and images
       const canvas = await html2canvas(element, {
-        scale: 2.5,
+        scale: 3,
         useCORS: true,
         allowTaint: true,
         backgroundColor: '#ffffff',
+        windowWidth: 580,
         logging: false
       });
+      
+      // Restore styles instantly so the user doesn't see the jump
+      element.style.width = originalWidth;
+      element.style.maxWidth = originalMaxWidth;
+      element.style.padding = originalPadding;
       
       return new Promise((resolve) => {
         canvas.toBlob((blob) => {
@@ -49,6 +64,12 @@ export default function ReceiptModal({ isOpen, onClose, payment, settings, showT
       });
     } catch (err) {
       console.error("Error generating receipt canvas:", err);
+      
+      // Restore styles on error
+      element.style.width = originalWidth;
+      element.style.maxWidth = originalMaxWidth;
+      element.style.padding = originalPadding;
+      
       return null;
     }
   };
@@ -152,6 +173,14 @@ export default function ReceiptModal({ isOpen, onClose, payment, settings, showT
 
         {/* Printable/Canvas Receipt Paper Wrapper */}
         <div className="receipt-wrapper" ref={receiptRef} id="receipt-print-wrapper">
+          <div className="receipt-brand-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '1.25rem' }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#6366f1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="28" height="28">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span style={{ fontSize: '1.25rem', fontWeight: '800', color: '#1e293b', letterSpacing: '-0.5px', fontFamily: 'var(--font-mono)' }}>RentTrace</span>
+          </div>
+
           <div className="receipt-header">
             <h2>RENT PAYMENT RECEIPT</h2>
             <p>Generated on {formatReadableDate(payment.date)}</p>
@@ -273,8 +302,15 @@ export default function ReceiptModal({ isOpen, onClose, payment, settings, showT
             </div>
           </div>
 
-          <div className="receipt-footer-msg">
-            <p>Thank you for your prompt payment! This document serves as a valid invoice ledger statement.</p>
+          <div className="receipt-footer-msg" style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px dashed #cbd5e1', textAlign: 'center' }}>
+            <p style={{ fontWeight: '600', color: '#334155', marginBottom: '0.5rem' }}>Thank you for your prompt payment!</p>
+            <p style={{ fontSize: '0.8rem', color: '#64748b', marginBottom: '1.25rem' }}>This document serves as a valid invoice ledger statement.</p>
+            
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', fontSize: '0.75rem', color: '#94a3b8' }}>
+              <span>Printed on: {new Date().toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' })}</span>
+              <span>Powered by <strong style={{ color: '#64748b' }}>RentTrace</strong> — Smart Utility Management</span>
+              <span><a href="https://rent-trace.vercel.app" style={{ color: '#6366f1', textDecoration: 'none' }}>rent-trace.vercel.app</a></span>
+            </div>
           </div>
         </div>
 
