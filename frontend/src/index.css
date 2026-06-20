@@ -1161,10 +1161,12 @@ textarea:focus {
 @media print {
 
   /* Completely hide all other page contents so they occupy 0px height */
-  .app-container,
+  .sidebar,
+  .main-content,
   #camera-modal-overlay,
   .receipt-actions,
-  .modal-header {
+  .modal-header,
+  .toast-container {
     display: none !important;
   }
 
