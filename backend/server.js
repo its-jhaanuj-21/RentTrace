@@ -8,7 +8,7 @@ import paymentRoutes from './routes/paymentRoutes.js';
 import authMiddleware from './middleware/authMiddleware.js';
 
 // Load env variables
-dotenv.config();
+dotenv.config({ override: true });
 
 // Connect to Database
 connectDB();

@@ -13,6 +13,7 @@ import About from './components/About';
 import MobileSettingsHub from './components/MobileSettingsHub';
 import LandingPage from './components/LandingPage';
 
+
 const DEFAULT_SETTINGS = {
   tenantName: '',
   tenantPhone: '',
